@@ -7,7 +7,7 @@ import java.io.File;
 public interface DocumentService {
    // String extractTextFromPDF(MultipartFile file);
    // String saveTextAsTXT(String text);
-    String savePdfToDb(MultipartFile file);
-    void sendPdfToModel(MultipartFile file);
+   String savePdfToDb( MultipartFile file, String socialId);
+   void sendPdfToModel(MultipartFile file);
 
 }

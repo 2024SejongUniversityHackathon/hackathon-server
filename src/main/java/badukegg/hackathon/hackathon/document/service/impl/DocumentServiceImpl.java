@@ -1,14 +1,20 @@
 package badukegg.hackathon.hackathon.document.service.impl;
 
+import badukegg.hackathon.hackathon.common.exception.BaseException;
+import badukegg.hackathon.hackathon.common.exception.UserException;
+import badukegg.hackathon.hackathon.common.response.ResponseCode;
 import badukegg.hackathon.hackathon.document.domain.Document;
 import badukegg.hackathon.hackathon.document.repository.DocumentRepository;
 import badukegg.hackathon.hackathon.document.service.DocumentService;
+import badukegg.hackathon.hackathon.member.domain.Member;
+import badukegg.hackathon.hackathon.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -24,13 +30,16 @@ import java.io.*;
 public class DocumentServiceImpl implements DocumentService {
 
     private final DocumentRepository documentRepository;
+    private final MemberRepository memberRepository;
 
     @Value("${file.upload-dir}")
     private String uploadDir;
 
 
     @Override
-    public String savePdfToDb(MultipartFile file) {
+    public String savePdfToDb( MultipartFile file, String socialId) {
+        Member member = memberRepository.findBySocialId(socialId).orElseThrow(() -> new UserException(ResponseCode.USER_NOT_FOUND));
+
         String fileName = file.getOriginalFilename();
         String filePath = uploadDir + File.separator + fileName;
 
@@ -41,7 +50,13 @@ public class DocumentServiceImpl implements DocumentService {
             throw new RuntimeException(e);
         }
 
-        Document document = new Document(fileName, filePath);
+        Document document = Document
+                .builder()
+                        .filePath(filePath)
+                                .fileName(fileName)
+                                        .member(member).build();
+        member.addDocument(document);
+
         documentRepository.save(document);
 
         return filePath;
@@ -87,5 +102,12 @@ public class DocumentServiceImpl implements DocumentService {
             throw new RuntimeException("파일 변환 중 오류 발생", e);
         }
         return convFile;
+    }
+
+    private static void authorizeMember(Document document) {
+        String socialId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!document.getMember().getSocialId().equals(socialId)){
+            throw new BaseException(ResponseCode.FORBIDDEN);
+        }
     }
 }

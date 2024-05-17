@@ -14,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/api/documents")
 @RequiredArgsConstructor
@@ -28,9 +30,11 @@ public class DocumentApiController {
             @ApiResponse(responseCode = "500", description = "서버에 오류가 발생하였습니다.")
     })
     @PostMapping("/uploadPdf")
-    public ApiResponseCustom<String> uploadPdf(@RequestParam("file") MultipartFile file) {
+    public ApiResponseCustom<String> uploadPdf(Principal principal,  @RequestParam("file") MultipartFile file) {
         try {
-            String filePath = documentService.savePdfToDb(file);
+            String socialId = principal.getName();
+
+            String filePath = documentService.savePdfToDb(file, socialId);
             documentService.sendPdfToModel(file);
 
             return ApiResponseCustom.success(ResponseCode.DOCUMENT_READ_SUCCESS);

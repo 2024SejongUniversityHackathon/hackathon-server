@@ -23,8 +23,10 @@ public enum ResponseCode {
     /**
      * user response
      */
+    TOKEN_EXPIRATION(HttpStatus.NOT_FOUND, "토큰이 만료되었습니다."),
+
     //404 Not Found
-    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "사용자를 찾을 수 없습니다,"),
+    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "사용자를 찾을 수 없습니다."),
 
     //200 OK
     USER_READ_SUCCESS(HttpStatus.OK, "사용자 정보 조회 성공"),

@@ -48,9 +48,24 @@ public class LoginController {
 
         }catch (Exception e){
             log.error("Apple 소셜 로그인 오류: {}", e.getMessage());
-            return ApiResponseCustom.fail(ResponseCode.INTERNAL_SERVER_ERROR);
+            return ApiResponseCustom.fail(ResponseCode.TOKEN_EXPIRATION);
         }
     }
+//    @Operation(summary = "로그아웃", description = "현재 사용자 로그아웃 처리")
+//    @ApiResponses(value = {
+//            @ApiResponse(responseCode = "200", description = "로그아웃 성공"),
+//            @ApiResponse(responseCode = "500", description = "서버에 오류가 발생했습니다.")
+//    })
+//    @PostMapping("/logout")
+//    public ResponseEntity<?> logout(@RequestHeader("Authorization") String accessToken) {
+//        try {
+//          //  authService.logout(accessToken);
+//            return ResponseEntity.ok().build();
+//        } catch (Exception e) {
+//            log.error("로그아웃 처리 중 오류 발생: {}", e.getMessage());
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//    }
 
 
 }

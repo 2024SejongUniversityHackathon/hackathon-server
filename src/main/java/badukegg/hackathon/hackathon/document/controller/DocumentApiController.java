@@ -35,7 +35,7 @@ public class DocumentApiController {
             String socialId = principal.getName();
 
             String filePath = documentService.savePdfToDb(file, socialId);
-            documentService.sendPdfToModel(file);
+            //documentService.sendPdfToModel(file);
 
             return ApiResponseCustom.success(ResponseCode.DOCUMENT_READ_SUCCESS);
         } catch (Exception e) {

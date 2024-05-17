@@ -10,19 +10,11 @@ import org.springframework.http.HttpStatus;
 public class ApiBody <T>{
 
     private T data;
-    private int responseCode;
-    private HttpStatus status;
-    private String message;
 
-    public ApiBody(ResponseCode responseCode, T data){
+
+    public ApiBody(T data){
         this.data = data;
-        this.responseCode = responseCode.getHttpStatusCode();
-        this.status = responseCode.getHttpStatus();
-        this.message = responseCode.getMessage();
+
     }
-    public ApiBody(ResponseCode responseCode){
-        this.responseCode = responseCode.getHttpStatusCode();
-        this.status = responseCode.getHttpStatus();
-        this.message = responseCode.getMessage();
-    }
+
 }

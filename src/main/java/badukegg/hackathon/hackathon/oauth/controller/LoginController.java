@@ -30,8 +30,7 @@ public class LoginController {
 
     @Operation(summary = "회원가입 및 로그인", description = "회원가입 및 로그인 진행")
     @ApiResponses(value =  {
-            @ApiResponse(responseCode = "200", description = "회원가입 성공",
-                    content = @Content(schema = @Schema(implementation = TokenDto.class)))
+            @ApiResponse(responseCode = "200", description = "회원가입 성공")
     })
     @PostMapping("/login/oauth2/code/apple")
     public ApiResponseCustom<?> callback(@RequestBody AppleLoginRequest appleLoginRequest) throws Exception {

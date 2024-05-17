@@ -29,12 +29,10 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String socialId;
 
-    @Column(nullable = false)
     private String username;
 
     private String email;
 
-    @Column(nullable = false)
     private LocalDate birthdate;
 
     public void setRole(Role role){

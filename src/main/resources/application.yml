@@ -9,7 +9,7 @@ logging:
     org.hibernate.type: trace
 
 springdoc:
-  packages-to-scan: yerong.hackathon
+  packages-to-scan: badukegg.hackathon.hackathon
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
   swagger-ui:

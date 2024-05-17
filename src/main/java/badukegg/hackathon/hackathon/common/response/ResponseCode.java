@@ -35,47 +35,13 @@ public enum ResponseCode {
 
 
     /**
-     * directory response
+     * document response
      */
     //404 Not Found
-    DIRECTORY_NOT_FOUND(HttpStatus.NOT_FOUND, "디렉토리를 찾을 수 없습니다,"),
+    DOCUMENT_NOT_FOUND(HttpStatus.NOT_FOUND, "디렉토리를 찾을 수 없습니다,"),
 
     //200 OK
-    DIRECTORY_READ_ALL_SUCCESS(HttpStatus.OK, "디렉토리 전체 조회 성공"),
-    DIRECTORY_READ_BY_ID_SUCCESS(HttpStatus.OK, "디렉토리 조회 성공"),
-    DIRECTORY_UPDATE_SUCCESS(HttpStatus.OK, "디렉토리 수정 성공"),
-    DIRECTORY_DELETE_SUCCESS(HttpStatus.OK, "디렉토리 삭제 성공"),
-
-    //201 Created
-    DIRECTORY_CREATE_SUCCESS(HttpStatus.CREATED, "디렉토리 생성 성공"),
-
-    /**
-     * note response
-     */
-    //404 Not Found
-    NOTE_NOT_FOUND(HttpStatus.NOT_FOUND, "노트를 찾을 수 없습니다,"),
-
-    //200 OK
-    NOTE_READ_SUCCESS(HttpStatus.OK, "노트 조회 성공"),
-    NOTE_UPDATE_SUCCESS(HttpStatus.OK, "노트 수정 성공"),
-    NOTE_DELETE_SUCCESS(HttpStatus.OK, "노트 삭제 성공"),
-
-
-    //201 Created
-    NOTE_CREATE_SUCCESS(HttpStatus.CREATED, "노트 생성 성공"),
-
-    /**
-     * heart response
-     */
-    //404 Not Found
-    HEART_NOT_FOUND(HttpStatus.NOT_FOUND, "하트를 찾을 수 없습니다,"),
-
-    //200 OK
-    HEART_READ_SUCCESS(HttpStatus.OK, "하트 정보 조회 성공"),
-    HEART_DELETE_SUCCESS(HttpStatus.OK, "하트 삭제 성공"),
-
-    //201 Created
-    HEART_CREATE_SUCCESS(HttpStatus.CREATED, "하트 생성 성공");
+    DOCUMENT_READ_SUCCESS(HttpStatus.OK, "디렉토리 글자 가져오기 성공");
 
 
     private HttpStatus httpStatus;

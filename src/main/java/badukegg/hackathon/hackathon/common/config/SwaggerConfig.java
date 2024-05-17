@@ -15,22 +15,22 @@ import java.util.Arrays;
 
 
 @Configuration
-@OpenAPIDefinition
+@OpenAPIDefinition(servers = {@Server(url="http://localhost:8080")})
 public class SwaggerConfig {
 
-//    @Bean
-//    public OpenAPI openAPI(){
-//
-//        SecurityScheme securityScheme = new SecurityScheme()
-//                .type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")
-//                .in(SecurityScheme.In.HEADER).name("Authorization");
-//        SecurityRequirement securityRequirement = new SecurityRequirement().addList("bearerAuth");
-//        return new OpenAPI()
-//                .addServersItem(new io.swagger.v3.oas.models.servers.Server().url("/"))
-//                .info(apiInfo())
-//                .components(new Components().addSecuritySchemes("bearerAuth", securityScheme))
-//                .security(Arrays.asList(securityRequirement));
-//    }
+    @Bean
+    public OpenAPI openAPI(){
+
+        SecurityScheme securityScheme = new SecurityScheme()
+                .type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")
+                .in(SecurityScheme.In.HEADER).name("Authorization");
+        SecurityRequirement securityRequirement = new SecurityRequirement().addList("bearerAuth");
+        return new OpenAPI()
+                .addServersItem(new io.swagger.v3.oas.models.servers.Server().url("/"))
+                .info(apiInfo())
+                .components(new Components().addSecuritySchemes("bearerAuth", securityScheme))
+                .security(Arrays.asList(securityRequirement));
+    }
     private Info apiInfo(){
         return new Info()
                 .title("hackathon API Document")

@@ -38,10 +38,10 @@ public enum ResponseCode {
      * document response
      */
     //404 Not Found
-    DOCUMENT_NOT_FOUND(HttpStatus.NOT_FOUND, "디렉토리를 찾을 수 없습니다,"),
+    DOCUMENT_NOT_FOUND(HttpStatus.NOT_FOUND, "문서를 찾을 수 없습니다,"),
 
     //200 OK
-    DOCUMENT_READ_SUCCESS(HttpStatus.OK, "디렉토리 글자 가져오기 성공");
+    DOCUMENT_READ_SUCCESS(HttpStatus.OK, "문서 업로드 성공");
 
 
     private HttpStatus httpStatus;

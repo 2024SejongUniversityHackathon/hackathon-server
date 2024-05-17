@@ -23,8 +23,10 @@ public class DocumentApiController {
     private final DocumentService documentService;
 
     @Operation(summary = "문서 가져오기", description = "문서를 가져오는 Controller")
-    @ApiResponses(value =  {
-            @ApiResponse()})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "문서 업로드 성공"),
+            @ApiResponse(responseCode = "500", description = "서버에 오류가 발생하였습니다.")
+    })
     @PostMapping("/uploadPdf")
     public ApiResponseCustom<String> uploadPdf(@RequestParam("file") MultipartFile file) {
         try {

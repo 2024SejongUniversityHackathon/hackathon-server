@@ -15,28 +15,27 @@ import java.util.Arrays;
 
 
 @Configuration
-@OpenAPIDefinition(servers = {@Server(url="https://baedug.com")})
+@OpenAPIDefinition
 public class SwaggerConfig {
 
-
-    @Bean
-    public OpenAPI openAPI(){
-
-        SecurityScheme securityScheme = new SecurityScheme()
-                .type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")
-                .in(SecurityScheme.In.HEADER).name("Authorization");
-        SecurityRequirement securityRequirement = new SecurityRequirement().addList("bearerAuth");
-        return new OpenAPI()
-                .addServersItem(new io.swagger.v3.oas.models.servers.Server().url("/"))
-                .info(apiInfo())
-                .components(new Components().addSecuritySchemes("bearerAuth", securityScheme))
-                .security(Arrays.asList(securityRequirement));
-    }
+//    @Bean
+//    public OpenAPI openAPI(){
+//
+//        SecurityScheme securityScheme = new SecurityScheme()
+//                .type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")
+//                .in(SecurityScheme.In.HEADER).name("Authorization");
+//        SecurityRequirement securityRequirement = new SecurityRequirement().addList("bearerAuth");
+//        return new OpenAPI()
+//                .addServersItem(new io.swagger.v3.oas.models.servers.Server().url("/"))
+//                .info(apiInfo())
+//                .components(new Components().addSecuritySchemes("bearerAuth", securityScheme))
+//                .security(Arrays.asList(securityRequirement));
+//    }
     private Info apiInfo(){
         return new Info()
-                .title("BaeDug API Document")
+                .title("hackathon API Document")
                 .version("0.0.1")
-                .description("BaeDug의 API 명세서입니다.");
+                .description("hackathon의 API 명세서입니다.");
     }
 
 }

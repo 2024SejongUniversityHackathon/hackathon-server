@@ -3,6 +3,7 @@ package badukegg.hackathon.hackathon.member.controller;
 import badukegg.hackathon.hackathon.common.response.ApiResponseCustom;
 import badukegg.hackathon.hackathon.common.response.ResponseCode;
 import badukegg.hackathon.hackathon.member.dto.request.ScoreRequest;
+import badukegg.hackathon.hackathon.member.dto.response.ScoreResponse;
 import badukegg.hackathon.hackathon.member.service.ScoreService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -32,10 +33,22 @@ public class ScoreApiController {
             @ApiResponse(responseCode = "500", description = "점수가 정상적으로 입력되지 않았습니다.")
     })
     public ApiResponseCustom<String> saveScores(Principal principal,  @RequestBody ScoreRequest request) {
-       // return ApiResponseCustom.fail(ResponseCode.SCORE_ERROR);
-        String socialId  = principal.getName();
+        String socialId = principal.getName();
         scoreService.saveScores(request, socialId);
         return ApiResponseCustom.success(ResponseCode.SCORE_SUCCESS);
     }
+
+    @PostMapping("/my-scores")
+    @Operation(summary = "점수 반환", description = "점수 반환하는 Controller" )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "점수 반환 성공"),
+            @ApiResponse(responseCode = "500", description = "점수가 정상적으로 반환되지 않았습니다.")
+    })
+    public ApiResponseCustom<?> saveScores(Principal principal) {
+        String socialId = principal.getName();
+        ScoreResponse scores = scoreService.getScores(socialId);
+        return ApiResponseCustom.success(scores, ResponseCode.SCORE_SUCCESS);
+    }
+
 
 }

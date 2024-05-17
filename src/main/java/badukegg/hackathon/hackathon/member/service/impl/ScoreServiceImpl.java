@@ -5,6 +5,7 @@ import badukegg.hackathon.hackathon.common.exception.UserException;
 import badukegg.hackathon.hackathon.common.response.ResponseCode;
 import badukegg.hackathon.hackathon.member.domain.Member;
 import badukegg.hackathon.hackathon.member.dto.request.ScoreRequest;
+import badukegg.hackathon.hackathon.member.dto.response.ScoreResponse;
 import badukegg.hackathon.hackathon.member.repository.MemberRepository;
 import badukegg.hackathon.hackathon.member.service.ScoreService;
 import lombok.RequiredArgsConstructor;
@@ -46,4 +47,22 @@ public class ScoreServiceImpl implements ScoreService {
 //            throw new BaseException(ResponseCode.FORBIDDEN);
 //        }
 //    }
+
+    @Override
+    @Transactional
+    public ScoreResponse getScores(String socialId) {
+        Member member = memberRepository.findBySocialId(socialId).orElseThrow(() -> new UserException(ResponseCode.USER_NOT_FOUND));
+
+        List<Integer> scores = member.getScore();
+
+        return ScoreResponse.builder()
+                .r(scores.get(0))
+                .i(scores.get(1))
+                .a(scores.get(2))
+                .s(scores.get(3))
+                .e(scores.get(4))
+                .c(scores.get(5))
+                .build();
+    }
+
 }

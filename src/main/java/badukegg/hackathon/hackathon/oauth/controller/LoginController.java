@@ -36,12 +36,9 @@ public class LoginController {
     @PostMapping("/login/oauth2/code/apple")
     public ApiResponseCustom<?> callback(@RequestBody AppleLoginRequest appleLoginRequest) throws Exception {
         try {
-            LocalDate birthdate = LocalDate.parse(appleLoginRequest.getBirthdate());
-
             MemberRequestDto memberRequestDto = MemberRequestDto.builder()
                     .email(appleLoginRequest.getEmail())
-                    .socialId(appleLoginRequest.getSocialId())
-                    .birthdate(birthdate)
+                    .socialId(appleLoginRequest.getAuthorizationCode())
                     .username(appleLoginRequest.getUsername())
                     .build();
 

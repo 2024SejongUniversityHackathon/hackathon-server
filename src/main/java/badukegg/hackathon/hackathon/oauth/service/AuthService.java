@@ -33,7 +33,6 @@ public class AuthService {
         if(member == null){
             member = Member.builder()
                     .socialId(memberRequestDto.getSocialId())
-                    .birthdate(memberRequestDto.getBirthdate())
                     .username(memberRequestDto.getUsername())
                     .email(memberRequestDto.getEmail())
                     .socialProvider(SocialProvider.APPLE)

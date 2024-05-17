@@ -15,7 +15,5 @@ public class MemberRequestDto {
 
     private String username;
     private String email;
-    private LocalDate birthdate;
     private String socialId;
-
 }

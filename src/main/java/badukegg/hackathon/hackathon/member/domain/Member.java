@@ -33,7 +33,6 @@ public class Member extends BaseTimeEntity {
 
     private String email;
 
-    private LocalDate birthdate;
 
     public void setRole(Role role){
         this.role = role;
@@ -43,13 +42,12 @@ public class Member extends BaseTimeEntity {
     }
 
     @Builder
-    public Member(Role role, String username, SocialProvider socialProvider, String socialId, String email, LocalDate birthdate) {
+    public Member(Role role, String username, SocialProvider socialProvider, String email, String socialId) {
         this.role = role;
         this.username = username;
         this.socialProvider = socialProvider;
-        this.socialId = socialId;
         this.email = email;
-        this.birthdate = birthdate;
+        this.socialId = socialId;
     }
 
 }

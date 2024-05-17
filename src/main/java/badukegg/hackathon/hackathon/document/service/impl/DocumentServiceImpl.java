@@ -40,10 +40,15 @@ public class DocumentServiceImpl implements DocumentService {
     @Override
     @Transactional
     public String savePdfToDb( MultipartFile file, String socialId) {
+        log.info("socialId == " + socialId);
+
         Member member = memberRepository.findBySocialId(socialId).orElseThrow(() -> new UserException(ResponseCode.USER_NOT_FOUND));
 
         String fileName = file.getOriginalFilename();
         String filePath = uploadDir + File.separator + fileName;
+
+        log.info("fileName == " + fileName);
+        log.info("filePath == " + filePath);
 
         // 파일을 지정된 경로에 저장
         try {

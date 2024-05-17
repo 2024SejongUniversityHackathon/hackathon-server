@@ -43,7 +43,6 @@ public class MemberServiceImpl implements MemberService {
                     .role(Role.USER)
                     .socialProvider(SocialProvider.APPLE)
                     .socialId(memberRequestDto.getSocialId())
-                    .birthdate(memberRequestDto.getBirthdate())
                     .build();
             memberRepository.save(member);
             return MemberResponseDto.builder()

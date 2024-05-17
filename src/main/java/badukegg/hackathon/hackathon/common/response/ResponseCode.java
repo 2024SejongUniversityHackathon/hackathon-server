@@ -19,6 +19,9 @@ public enum ResponseCode {
     //500 Internal Server Error
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "서버에 오류가 발생하였습니다."),
 
+    SCORE_ERROR(HttpStatus.BAD_REQUEST, "RIASEC 점수는 6개여야 합니다."),
+
+    SCORE_SUCCESS(HttpStatus.OK, "RIASEC 점수가 성공적으로 저장되었습니다."),
 
     /**
      * user response
@@ -34,6 +37,11 @@ public enum ResponseCode {
 
     //201 Created
     USER_CREATE_SUCCESS(HttpStatus.CREATED, "회원가입 성공"),
+
+
+    CHECK_SUCCESS(HttpStatus.OK, "가능한 접근입니다."),
+    CHECK_ERROR(HttpStatus.BAD_REQUEST, "불가능한 접근입니다."),
+
 
 
     /**

@@ -16,6 +16,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -37,6 +38,7 @@ public class DocumentServiceImpl implements DocumentService {
 
 
     @Override
+    @Transactional
     public String savePdfToDb( MultipartFile file, String socialId) {
         Member member = memberRepository.findBySocialId(socialId).orElseThrow(() -> new UserException(ResponseCode.USER_NOT_FOUND));
 
@@ -63,6 +65,7 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
+    @Transactional
     public void sendPdfToModel(MultipartFile pdfFile) {
         // Python 서버 URL
         String pythonServerUrl = "http://localhost:5000/receive_pdf";

@@ -36,7 +36,46 @@ public class Member extends BaseTimeEntity {
 
     private String email;
 
+    @Column(nullable = false)
+    private int rScore;
 
+    @Column(nullable = false)
+    private int iScore;
+
+    @Column(nullable = false)
+    private int aScore;
+
+    @Column(nullable = false)
+    private int sScore;
+
+    @Column(nullable = false)
+    private int eScore;
+
+    @Column(nullable = false)
+    private int cScore;
+
+
+    public void setScore(List<Integer> score) {
+        this.rScore = score.get(0);
+        this.iScore = score.get(1);
+        this.aScore = score.get(2);
+        this.sScore = score.get(3);
+        this.eScore = score.get(4);
+        this.cScore = score.get(5);
+    }
+
+
+    public List<Integer> getScore() {
+        List<Integer> score = new ArrayList<>();
+        score.add(rScore);
+        score.add(iScore);
+        score.add(aScore);
+        score.add(sScore);
+        score.add(eScore);
+        score.add(cScore);
+
+        return score;
+    }
     @OneToMany(mappedBy = "member")
     private List<Document> documents = new ArrayList<>();
 
@@ -46,6 +85,7 @@ public class Member extends BaseTimeEntity {
     public void updateName(String username){
         this.username = username;
     }
+
 
     public void addDocument(Document document) {
         this.documents.add(document);

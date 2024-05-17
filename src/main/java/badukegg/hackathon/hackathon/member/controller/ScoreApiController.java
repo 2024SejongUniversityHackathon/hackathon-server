@@ -2,6 +2,7 @@ package badukegg.hackathon.hackathon.member.controller;
 
 import badukegg.hackathon.hackathon.common.response.ApiResponseCustom;
 import badukegg.hackathon.hackathon.common.response.ResponseCode;
+import badukegg.hackathon.hackathon.member.dto.request.ScoreRequest;
 import badukegg.hackathon.hackathon.member.service.ScoreService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -30,12 +31,10 @@ public class ScoreApiController {
             @ApiResponse(responseCode = "200", description = "점수 입력 성공"),
             @ApiResponse(responseCode = "500", description = "점수가 정상적으로 입력되지 않았습니다.")
     })
-    public ApiResponseCustom<String> saveScores(Principal principal,  @RequestBody @Schema(example = "[1,2,3,4,5,6]") List<Integer> scores) {
-        if (scores.size() != 6) {
-            return ApiResponseCustom.fail(ResponseCode.SCORE_ERROR);
-        }
+    public ApiResponseCustom<String> saveScores(Principal principal,  @RequestBody ScoreRequest request) {
+       // return ApiResponseCustom.fail(ResponseCode.SCORE_ERROR);
         String socialId  = principal.getName();
-        scoreService.saveScores(scores, socialId);
+        scoreService.saveScores(request, socialId);
         return ApiResponseCustom.success(ResponseCode.SCORE_SUCCESS);
     }
 

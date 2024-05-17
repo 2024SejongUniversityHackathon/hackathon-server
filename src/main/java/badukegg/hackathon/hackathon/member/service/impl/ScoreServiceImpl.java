@@ -4,6 +4,7 @@ import badukegg.hackathon.hackathon.common.exception.BaseException;
 import badukegg.hackathon.hackathon.common.exception.UserException;
 import badukegg.hackathon.hackathon.common.response.ResponseCode;
 import badukegg.hackathon.hackathon.member.domain.Member;
+import badukegg.hackathon.hackathon.member.dto.request.ScoreRequest;
 import badukegg.hackathon.hackathon.member.repository.MemberRepository;
 import badukegg.hackathon.hackathon.member.service.ScoreService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,9 +23,18 @@ public class ScoreServiceImpl implements ScoreService {
 
     @Override
     @Transactional
-    public void saveScores(List<Integer> scores, String socialId) {
+    public void saveScores(ScoreRequest scoresRequest, String socialId) {
 
         Member member = memberRepository.findBySocialId(socialId).orElseThrow(() -> new UserException(ResponseCode.USER_NOT_FOUND));
+        List<Integer> scores = new ArrayList<>();
+
+        scores.add(scoresRequest.getR());
+        scores.add(scoresRequest.getI());
+        scores.add(scoresRequest.getA());
+        scores.add(scoresRequest.getS());
+        scores.add(scoresRequest.getE());
+        scores.add(scoresRequest.getC());
+
         member.setScore(scores);
 
         memberRepository.save(member);

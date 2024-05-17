@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 
 @Configuration
-@OpenAPIDefinition(servers = {@Server(url="http://localhost:8080")})
+@OpenAPIDefinition(servers = {@Server(url="http://52.78.154.100:8080")})
 public class SwaggerConfig {
 
     @Bean

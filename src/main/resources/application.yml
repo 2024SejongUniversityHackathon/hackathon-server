@@ -5,6 +5,7 @@ spring:
     include: oauth
   servlet:
     multipart:
+      enabled: true
       max-file-size: 15MB
 logging:
   level:

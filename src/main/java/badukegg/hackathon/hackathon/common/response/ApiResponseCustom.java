@@ -15,15 +15,15 @@ public class ApiResponseCustom<T>{
 
 
     public static <T> ApiResponseCustom<T> success(T data, ResponseCode responseCode) {
-        return new ApiResponseCustom<T>(new ApiBody<>(data, responseCode.getMessage()));
+        return new ApiResponseCustom<T>(new ApiBody<>(responseCode, data));
     }
     public static <T> ApiResponseCustom<T> success(ResponseCode responseCode) {
-        return new ApiResponseCustom<T>( new ApiBody<>(responseCode.getMessage()));
+        return new ApiResponseCustom<T>( new ApiBody<>(responseCode));
     }
     public static <T> ApiResponseCustom<T> create(T data, ResponseCode responseCode) {
-        return new ApiResponseCustom<T>(new ApiBody<>(data, responseCode.getMessage()));
+        return new ApiResponseCustom<T>(new ApiBody<>(responseCode, data));
     }
     public static <T> ApiResponseCustom<T> fail(ResponseCode responseCode) {
-        return new ApiResponseCustom<T>(new ApiBody<>(null, responseCode.getMessage() ));
+        return new ApiResponseCustom<T>(new ApiBody<>(responseCode));
     }
 }

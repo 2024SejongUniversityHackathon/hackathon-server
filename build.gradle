@@ -42,10 +42,10 @@ dependencies {
 	implementation 'org.apache.pdfbox:pdfbox:2.0.24'
 	implementation 'net.sourceforge.tess4j:tess4j:4.5.4'
 
-	runtimeOnly 'com.h2database:h2'
+	//runtimeOnly 'com.h2database:h2'
 
 	compileOnly 'org.projectlombok:lombok'
-	//runtimeOnly 'com.mysql:mysql-connector-j'
+	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testAnnotationProcessor('org.projectlombok:lombok')
 

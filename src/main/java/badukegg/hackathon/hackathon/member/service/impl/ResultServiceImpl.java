@@ -20,22 +20,22 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     @Transactional
-    public boolean isMemberValid(Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new UserException(ResponseCode.USER_NOT_FOUND));
+    public boolean isMemberValid(String socialId) {
+        Member member = memberRepository.findBySocialId(socialId).orElseThrow(() -> new UserException(ResponseCode.USER_NOT_FOUND));
 
-        authorizeMember(member);
+
+        //authorizeMember(member);
 
         return member.getRScore() > 0 && member.getIScore() > 0 && member.getAScore() > 0 &&
                 member.getSScore() > 0 && member.getEScore() > 0 && member.getCScore() > 0 &&
                 member.getDocuments() != null && !member.getDocuments().isEmpty();
     }
 
-    private static void authorizeMember(Member member) {
-        String socialId = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        if(!member.getSocialId().equals(socialId)){
-            throw new BaseException(ResponseCode.FORBIDDEN);
-        }
-    }
+//    private static void authorizeMember(Member member) {
+//        String socialId = SecurityContextHolder.getContext().getAuthentication().getName();
+//
+//        if(!member.getSocialId().equals(socialId)){
+//            throw new BaseException(ResponseCode.FORBIDDEN);
+//        }
+//    }
 }

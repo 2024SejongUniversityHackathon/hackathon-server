@@ -21,19 +21,18 @@ public class ScoreServiceImpl implements ScoreService {
 
     @Override
     @Transactional
-    public void saveScores(List<Integer> scores) {
+    public void saveScores(List<Integer> scores, String socialId) {
 
-        Member member = memberRepository.findById(1L).orElseThrow(() -> new UserException(ResponseCode.USER_NOT_FOUND));
-        authorizeMember(member);
+        Member member = memberRepository.findBySocialId(socialId).orElseThrow(() -> new UserException(ResponseCode.USER_NOT_FOUND));
         member.setScore(scores);
 
         memberRepository.save(member);
     }
-    private static void authorizeMember(Member member) {
-        String socialId = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        if(!member.getSocialId().equals(socialId)){
-            throw new BaseException(ResponseCode.FORBIDDEN);
-        }
-    }
+//    private static void authorizeMember(Member member) {
+//        String socialId = SecurityContextHolder.getContext().getAuthentication().getName();
+//
+//        if(!member.getSocialId().equals(socialId)){
+//            throw new BaseException(ResponseCode.FORBIDDEN);
+//        }
+//    }
 }

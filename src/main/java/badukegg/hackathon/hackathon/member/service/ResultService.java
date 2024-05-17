@@ -4,5 +4,5 @@ import badukegg.hackathon.hackathon.member.dto.request.MemberRequestDto;
 import badukegg.hackathon.hackathon.member.dto.response.MemberResponseDto;
 
 public interface ResultService {
-    boolean isMemberValid(Long memberId);
+    boolean isMemberValid(String socialId);
 }

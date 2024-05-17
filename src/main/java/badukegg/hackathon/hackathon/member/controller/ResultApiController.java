@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 public class ResultApiController {
 
@@ -24,9 +26,10 @@ public class ResultApiController {
             @ApiResponse(responseCode = "200", description = "모두 성공"),
             @ApiResponse(responseCode = "500", description = "둘 중 하나를 하지 않았습니다.")
     })
-    @GetMapping("/members/{memberId}/check")
-    public ApiResponseCustom<?> checkAvailability(@PathVariable Long memberId) {
-        boolean isAvailable = resultService.isMemberValid(memberId);
+    @GetMapping("/member/check")
+    public ApiResponseCustom<?> checkAvailability(Principal principal) {
+        String socialId = principal.getName();
+        boolean isAvailable = resultService.isMemberValid(socialId);
         if(isAvailable){
             return  ApiResponseCustom.success(isAvailable, ResponseCode.CHECK_SUCCESS);
         }

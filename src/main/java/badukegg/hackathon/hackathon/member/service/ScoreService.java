@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ScoreService {
 
-    void saveScores(List<Integer> scores);
+    void saveScores(List<Integer> scores, String socialId);
 }

@@ -19,7 +19,7 @@ public class ApiResponseCustom<T>{
         this.header = header;
     }
     public static <T> ApiResponseCustom<T> success(T data, ResponseCode responseCode) {
-        return new ApiResponseCustom<T>(new ApiHeader(responseCode)new ApiBody<>(data));
+        return new ApiResponseCustom<T>(new ApiHeader(responseCode), new ApiBody<>(data));
     }
     public static <T> ApiResponseCustom<T> success(ResponseCode responseCode) {
         return new ApiResponseCustom<T>( new ApiHeader(responseCode));

@@ -26,7 +26,7 @@ public class ScoreApiController {
         }
 
         scoreService.saveScores(scores);
-        return ApiResponseCustom.success(ResponseCode.SCORE_ERROR);
+        return ApiResponseCustom.success(ResponseCode.SCORE_SUCCESS);
     }
 
 }

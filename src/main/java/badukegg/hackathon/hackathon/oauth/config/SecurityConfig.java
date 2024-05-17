@@ -56,7 +56,9 @@ public class SecurityConfig {
                                 .permitAll()
                                 .requestMatchers(
                                         AntPathRequestMatcher.antMatcher("/"),
-                                        AntPathRequestMatcher.antMatcher("/api/**")
+                                        AntPathRequestMatcher.antMatcher("/api/**"),
+                                        AntPathRequestMatcher.antMatcher("/api/documents/**")
+
                                 ).authenticated().anyRequest().permitAll()
                 )
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer

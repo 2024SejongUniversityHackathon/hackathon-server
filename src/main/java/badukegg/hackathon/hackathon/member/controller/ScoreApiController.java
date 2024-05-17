@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +39,7 @@ public class ScoreApiController {
         return ApiResponseCustom.success(ResponseCode.SCORE_SUCCESS);
     }
 
-    @PostMapping("/my-scores")
+    @GetMapping("/my-scores")
     @Operation(summary = "점수 반환", description = "점수 반환하는 Controller" )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "점수 반환 성공"),
